@@ -1,5 +1,13 @@
 # Photo Curator - Roadmap
 
+## The Real Problem
+Curating photos is about **reliving memories**, not file management. The pain:
+- Can't look back at your year/life nicely — no "year in review" without hours of work
+- It becomes mental load — you know you *should* organize, but you never have time
+- 10,000+ photos sitting in a library you never browse because it's overwhelming
+- Instagram became people's curation tool by accident — it forces you to pick X photos and displays them beautifully
+- The goal isn't "fewer photos" — it's **easy access to your best memories**
+
 ## What We Proved (Feb 7, 2026)
 - Tested 3 AI models on same photos with same "score like a parent" prompt
 - **Claude Sonnet** = best match with human taste (picked the "cheeky" photo as #1)
