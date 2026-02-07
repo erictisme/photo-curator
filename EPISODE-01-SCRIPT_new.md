@@ -5,6 +5,22 @@
 
 ---
 
+## THE BACKSTORY
+
+Eric has been building things with AI for a while now. Over a dozen projects. 44 ideas in a notebook. A book tracker, an outreach tool, coaching frameworks, information diet bots — project after project after project. None of them made money. None of them "succeeded" by any conventional measure. Zero paying customers.
+
+For a long time, that felt like failure. Scattered energy. Starting too many things, finishing none. The kind of pattern that makes you wonder if you're just procrastinating with extra steps.
+
+But here's what he didn't realize: every project was reps. Every time he opened Claude Code and said "build me this," he was getting better at something that doesn't have a name yet. Not coding — he still can't read code. But *directing AI to build things.* Knowing what to ask for. Knowing when the output is wrong. Knowing how to test, iterate, and evaluate. A skill that looks like playing with a toy until the moment it produces something real.
+
+This is the session where the toy produced something real. And it happened not because Eric planned it, but because he was sitting with his family and someone mentioned a problem.
+
+He told his friend Yaohong later: he wants to use this skill as a force for good. Not to cut costs or replace jobs — but to help people do work that was never going to happen otherwise. Build tools nobody would build for them. Solve problems too small for a startup but too tedious for a person.
+
+This episode is the proof of concept for that idea.
+
+---
+
 ## WHAT ACTUALLY HAPPENED
 
 Five people in a living room. Eric (doesn't code, builds apps by directing AI). His brother (software engineer, ex-Infosys, worked in tech at one of the world's largest sovereign wealth funds). Brother's wife (the one with the photo problem). Eric's wife. Eric's mum. A MacBook running Claude Code. And Whisper Flow turning everyone's conversation into text that Eric fed into the terminal.
