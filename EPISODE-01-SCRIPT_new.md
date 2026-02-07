@@ -124,9 +124,17 @@ Results come back. Eric pulls up the comparison.
 
 The room reacts. Even Eric's mum understands this table. The brother — a professional software engineer — is impressed. Not by the code, but by the methodology. He says something to the effect of: "That's what ML engineers do. You just did model evaluation without knowing the term."
 
-Claude didn't just rank the cheeky photo well. It ranked it **first.** Score of 95. And it wrote a reason — something about the expression capturing genuine personality and mischief. When Eric read Claude's reason out loud, the room went quiet. The AI articulated *why* the photo mattered better than anyone in the room had.
+Claude didn't just rank the cheeky photo well. It ranked it **first.** Score of 95.
 
-The sister-in-law: "That's exactly right. That's exactly why I love that photo."
+But here's the part that stopped the room. Claude also wrote a one-sentence reason explaining its choice — something about the expression capturing genuine personality and mischief, the kind of photo that makes you smile years later.
+
+When Eric read that reason out loud, people went quiet. The AI didn't just pick the right photo. It **explained why** — and the explanation matched what the mother felt but hadn't fully articulated. She said: "That's exactly right. That's exactly why I love that photo."
+
+This is explainability. The AI shows its work. It doesn't just give you a number — it tells you *what it saw* and *why it matters.* For a tool that's making judgment calls about your personal memories, this is everything. You can trust a score you can argue with. You can't trust a black box.
+
+And it cuts both ways: when Gemini scored the cheeky photo dead last, it also gave a reason — something about focus and lighting. Reading that reason out loud made it obvious *why* Gemini was wrong. The reasoning exposed the flaw. You could see it was judging like a camera review, not like a parent.
+
+The eval wasn't just "which model scores better." It was "which model *thinks* about photos the way we do — and can explain itself."
 
 ---
 
@@ -210,4 +218,6 @@ For Yaohong and anyone producing this content — this is what the format looks 
 
 8. **ICP: "From my mum to pastors to doctors to admin staff."** Everyday white-collar people. People who will never write code. People who have problems they've given up on solving. The technical person in the room is the validator, not the audience.
 
-9. **Capture, don't build.** When the customer starts riffing on ideas ("what about Spotify Wrapped for photos?"), write it down. Don't build it. The roadmap comes from the conversation. The build comes later — or never. The session is about proving value, not shipping features.
+9. **Explainability is trust.** The AI should show its reasoning, not just its answer. When Claude explained *why* the cheeky photo was the best, the mother could verify it matched her own feeling. When Gemini explained its pick, everyone could see it was thinking about the wrong things. A score you can interrogate is worth more than a perfect score you can't. For personal, subjective decisions — photos, taste, memories — "here's why" matters more than "here's what."
+
+10. **Capture, don't build.** When the customer starts riffing on ideas ("what about Spotify Wrapped for photos?"), write it down. Don't build it. The roadmap comes from the conversation. The build comes later — or never. The session is about proving value, not shipping features.
