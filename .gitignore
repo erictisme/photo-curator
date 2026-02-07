@@ -1,0 +1,13 @@
+# API keys - NEVER commit these
+.env
+
+# Photo folders - too large for git
+input/
+output/
+output_claude/
+output_openai/
+
+# OS files
+.DS_Store
+__pycache__/
+*.pyc
