@@ -1,112 +1,80 @@
-# Episode 01: "My AI Picked the Wrong Photo"
-### How a Non-Technical Builder Used Claude Code to Build an AI Photo Curator in 60 Minutes — and What It Teaches About Building with AI
+# Episode 01: "The AI Picked the Wrong Photo"
+### A family, a laptop, and one hour to prove that AI can understand a mother's taste in photos
 
-*A podcast script in the style of How I AI. Written for Eric + Yaohong to riff on. Adapt freely.*
-
----
-
-## COLD OPEN (2 min)
-
-**ERIC:**
-Here's a question. You have 10,000 photos on your phone. Your kid's first year. Birthdays, holidays, random Tuesday mornings. You *know* there are amazing photos buried in there. But you will never, ever sort through them.
-
-So I asked an AI to pick the best ones. And it picked wrong. Dead last. The photo my friend would frame on the wall — the AI scored it the lowest out of 17 photos. Three times in a row.
-
-And that failure is the most interesting thing that happened. Because what we did next — rewriting one paragraph of instructions, and then testing three different AI models head-to-head — taught me more about building with AI than any tutorial I've ever watched.
-
-I'm Eric. I don't write code. I build software by talking to AI. And today I'm going to walk you through exactly what happened, step by step.
+*A sample episode script for Eric + Yaohong's content series. Written to show the concept, not to be read word-for-word. Adapt freely.*
 
 ---
 
-## ACT 1: THE PROBLEM NOBODY SOLVES (8 min)
-*Theme: Start with a real person's real pain. Not a hypothesis.*
+## WHAT ACTUALLY HAPPENED
 
-**ERIC:**
-So this started because I was hanging out with a couple — the husband is a software engineer. Infosys background. Used to work in tech at one of the largest sovereign wealth funds in the world. His wife has a problem with her photos. Apple Photos. Over a terabyte. And the duplicate-finder in Apple Photos? She's tried it. It catches *identical* copies. But that's not her problem.
+Five people in a living room. Eric (doesn't code, builds apps by directing AI). His brother (software engineer, ex-Infosys, worked in tech at one of the world's largest sovereign wealth funds). Brother's wife (the one with the photo problem). Eric's wife. Eric's mum. A MacBook running Claude Code. And Whisper Flow turning everyone's conversation into text that Eric fed into the terminal.
 
-Her problem is she has seventeen photos of the same moment. Her baby eating a muffin. Slightly different angles, slightly different expressions. She wants to keep the best one or two, not all seventeen. But she'll never sit down and do that manually for a terabyte of photos.
+Nobody planned this as a "demo." It started as a family hangout. Someone mentioned photos. The brother's wife said she had over a terabyte of photos she couldn't manage. Eric said, "Let me try something."
 
-And here's what makes this interesting: her husband is a *technical* guy. He could probably build something to solve this. But he hasn't. Because the problem isn't technical skill — it's that life is busy, nobody has the motivation to sit down and build a photo sorter on a Saturday afternoon. This is the kind of problem that doesn't get solved because it's not urgent enough to prioritize, but painful enough to complain about.
+What followed was an hour of everyone talking — to each other and through Eric to Claude Code — that went from "I have too many photos" to "this AI understands which photo I'd frame on my wall" to "wait, we should build this into a real product."
 
-**[YAOHONG — tech context]:**
-*This is actually a harder problem than it sounds. Finding identical photos is a solved problem — you compare the file data. Finding the "best" photo from a group of similar-but-different photos? That's a judgment call. That's taste. And taste is subjective.*
-
-**ERIC:**
-Right. And here's the insight that changed how I think about this. The problem isn't "too many photos." The problem is: **she can't relive her memories easily.**
-
-Think about Instagram. Why do people post there? It forces you to pick your best photos. It displays them beautifully. It becomes this curated timeline of your life. Instagram is accidentally the best photo curation tool most people have.
-
-But your private photo library? It's just a dump. You never look back. It's mental load — you *know* you should organize it, you never do, and so those memories just... sit there.
-
-**[Principle #1: Spend more time on problem discovery than diving in. The customer interview IS the product work.]**
+This script reconstructs that session. Some context was lost (the conversation compacted twice as it got long), but the key moments survived.
 
 ---
 
-## ACT 2: BUILD THE SIMPLEST THING (10 min)
-*Theme: Don't build an app. Build a script. Prove the concept first.*
+## THE SCENE (5 min)
 
-**ERIC:**
-So here's what we did. And I want to be really transparent about the messy process, because I think that's what's valuable.
+The brother's wife explains the problem. It's not about duplicates — Apple Photos already handles that. It's about having seventeen photos of the same moment. Her baby eating a muffin. Seventeen slightly different angles and expressions. She wants the best one or two. She doesn't want to manually compare seventeen photos for every event across a terabyte of memories.
 
-I opened Claude Code — which is a terminal tool, you type to it and it builds things — and I said, basically: "Build me a Python script that takes a folder of photos, groups them by when they were taken, sends each group to an AI that can see images, and asks it to score them."
+The brother — who could literally build this himself — nods. He hasn't built it. Not because he can't. Because nobody sits down on a Saturday to build a photo sorting tool. The activation energy is too high. The problem isn't urgent enough to prioritize, but it's painful enough to complain about every time you open your photo library.
 
-Fifteen minutes later, we had a working script. Drop photos in a folder, run one command, get results.
+Eric's mum is there too. She doesn't know what Claude Code is. She's about to watch her son talk to a terminal and have it build software in front of her.
 
-**[YAOHONG — tech context]:**
-*What happened under the hood: Claude Code wrote a Python script that reads the timestamp from each photo's metadata — every photo has hidden data saying when and where it was taken — groups photos taken within 30 minutes of each other as one "event," then sends each group to an AI vision model to name and score.*
-
-**ERIC:**
-The first version used Google's Gemini model. It looked at our 17 baby photos and came back with:
-
-- Event name: **"Baby Eating Muffin"** — accurate, and pretty cute
-- Best photo: **IMG_5870** — scored 88 out of 100
-- Ranked all 17 from best to worst
-
-And we were like, cool, it works! Let's check if the AI agrees with a real human.
-
-**[Principle #2: Build the simplest thing that could possibly work. A Python script you run from the terminal. Not an app. Not a website. One command, one result. Prove the concept before you build the product.]**
+Eric opens his laptop. "Let me see if we can solve this right now."
 
 ---
 
-## ACT 3: THE HUMAN TEST (10 min)
-*Theme: The moment everything got interesting. AI meets human taste.*
+## THE BUILD (10 min)
 
-**ERIC:**
-So here's where it gets good. I showed my friend the ranked results and asked: "Which one would *you* frame on the wall?"
+Eric isn't thinking "I need to build a Python script." He's thinking: **can I prove this is solvable before everyone gets bored and moves on?**
 
-She immediately pointed to **IMG_5875**. A photo where the baby has this cheeky, mischievous expression — looking right at the camera with this little smirk. She said, "That one. That's the one that captures who he is."
+He starts talking to Claude Code through Whisper Flow — speaking naturally, describing the problem as the family discussed it. The room's conversation becomes the product requirements. No spec document. No wireframes. Just: "She has a folder of photos. Group them by when they were taken. Send each group to an AI that can see images. Ask it to name the event and pick the best photo."
 
-I looked at the scores. IMG_5875 was scored **55 out of 100.** Dead last out of 17 photos.
+Claude Code starts building. Files appear. The brother leans in — he notices file extensions, syntax, the structure. At one point he points out something about `.tsx` files and Eric has no idea what that means. This becomes a running joke. Eric is directing AI to write code in languages he can't read. And it's working.
 
-**[Pause for effect]**
+Fifteen minutes in, there's a working script. Drop photos in a folder, run one command, get results.
 
-The photo a mother would frame on the wall — the AI put it at the very bottom.
+The first run comes back. Gemini (Google's AI) looked at the 17 baby photos and named the event: **"Baby Eating Muffin."**
 
-**[YAOHONG — tech context]:**
-*This is actually a really important moment, and it happens all the time in AI products. The AI was scoring "correctly" by its own criteria — sharp focus, good lighting, composition. But the human was scoring on something completely different: personality. Expression. The feeling of the photo. The AI was a photography judge. The mother was... a mother.*
+The room laughs. It's accurate. It's charming. It already feels like magic — an AI looked at a pile of unnamed image files and understood what was happening in them.
 
-**ERIC:**
-Exactly. And this is where the methodology kicks in. We didn't throw out the tool. We didn't say "AI is useless." We said: **the instructions are wrong.**
+Best photo: IMG_5870. Score: 88 out of 100. All 17 ranked from best to worst.
 
-**[Principle #3: When the AI gets it wrong, the first question is always: "Did I ask for the right thing?" Not "is the AI broken?" Your instructions are the product.]**
+Everyone leans in to look at the results.
 
 ---
 
-## ACT 4: THE PROMPT REWRITE (8 min)
-*Theme: One paragraph changed everything. Prompt engineering is product design.*
+## THE MOMENT IT GOT INTERESTING (5 min)
 
-**ERIC:**
-So we rewrote the instructions. And I want to show you the before and after, because this is probably the most valuable part of the whole session.
+Eric asks his sister-in-law: "Which one would *you* frame on the wall?"
 
-**Before — the default instruction was basically:**
-> Score each photo on quality, composition, sharpness, and visual appeal.
+She doesn't hesitate. **IMG_5875.** The baby has this cheeky, mischievous expression — looking right at the camera with a little smirk. "That one. That's him. That's who he is."
 
-Standard photography criteria. Technical. Objective. And totally wrong for what we wanted.
+Eric scrolls to find IMG_5875 in the rankings.
 
-**After — the rewritten instruction:**
+Score: **55 out of 100.** Dead last out of 17 photos.
+
+The room goes quiet for a second. Then everyone starts talking at once. The photo a mother would frame on the wall — the AI put it at the very bottom. The AI was judging like a photography contest. The mother was judging like... a mother.
+
+The brother immediately gets it from a technical angle: the AI was optimizing for the wrong objective. Sharp focus, good lighting, composition — that's what it was scoring. But personality, expression, the *feeling* of the photo? It wasn't even looking at that.
+
+---
+
+## THE REWRITE (10 min)
+
+This is where it gets good. Eric doesn't change any code. He doesn't touch the script. He rewrites **one paragraph** — the instructions he gave the AI about how to score.
+
+Before, the instruction was basically: *score on quality, composition, sharpness, and visual appeal.*
+
+After — and this was shaped by the room's conversation, everyone chiming in about what matters in a family photo:
+
 > You are a PARENT picking your favorite photos to frame on the wall — NOT a photography contest judge. You care about the FEELING of the photo, not whether it's technically perfect.
 >
-> Score based on priorities:
 > 1. EXPRESSION & PERSONALITY (highest weight) — cheeky smiles, genuine laughs, playful looks
 > 2. EMOTIONAL STORYTELLING — captures a feeling you'd want to remember
 > 3. CUTENESS & CHARM — the 'aww' factor
@@ -114,203 +82,116 @@ Standard photography criteria. Technical. Objective. And totally wrong for what 
 >
 > IMPORTANT: A slightly blurry photo of a genuinely funny expression beats a perfectly sharp photo of a neutral face.
 
-**[YAOHONG — tech context]:**
-*Notice what Eric did here. He didn't change any code. He didn't change the model. He changed one paragraph of text — the system prompt. This is the closest thing to "product design" in AI development. You're literally writing the personality and judgment criteria of your product in plain English. No code required.*
+The non-technical people in the room had a visible reaction to this. This isn't code. It's a creative brief. It's writing. It's something a mother, a pastor, an admin assistant could write. You're describing what you care about in plain English and the AI reshapes its judgment around your values.
 
-**ERIC:**
-We re-ran it with the new prompt. Same 17 photos. Same Gemini model.
+They re-ran it. Same 17 photos, same Gemini model, new instructions.
 
-IMG_5875 — the cheeky photo — scored **40.** Still dead last.
+IMG_5875 — the cheeky photo — scored **40.** Still dead last. It actually got *worse.*
 
-**[YAOHONG:]**
-*Wait, it got worse?*
-
-**ERIC:**
-It got worse. We ran it again. Same thing. Gemini just... doesn't get it. Even when you explicitly tell it "personality over perfection," it keeps defaulting to technical quality.
-
-And that's when we decided to do something I'd never done before.
-
-**[Principle #4: If your prompt is right but the output is still wrong, the model might be the problem. Not all AI models are interchangeable. They have different "personalities."]**
+The brother: "The model might just not be capable of this."
 
 ---
 
-## ACT 5: THE EVAL TABLE (12 min)
-*Theme: Testing three AI models head-to-head. The moment this became real engineering.*
+## THE EVAL (10 min)
 
-**ERIC:**
-We took the exact same 17 photos, the exact same "score like a parent" prompt, and ran it through three different AI models:
+Eric decides to test other models. Same 17 photos. Same "score like a parent" prompt. Three AI models head-to-head:
 
-1. **Gemini** (Google) — the one that kept failing
-2. **Claude Sonnet** (Anthropic) — the model I use for coding
-3. **GPT-4o** (OpenAI) — the one everyone talks about
+Claude Code spins up two additional scripts in parallel — one for Claude Sonnet (Anthropic), one for GPT-4o (OpenAI). The brother watches this happen in real time. Three scripts running simultaneously, three different AI companies scoring the same photos with identical instructions.
 
-Same photos, same instructions, three different judges. And here's what came back:
+Results come back. Eric pulls up the comparison.
 
-| Model | Where it ranked IMG_5875 (the cheeky photo) | Score |
+| Model | Where it ranked the cheeky photo | Score |
 |-------|------|-------|
 | **Claude Sonnet** | **#1 out of 17** | **95** |
 | **GPT-4o** | #2 out of 17 | 90 |
 | **Gemini** | #17 out of 17 (dead last) | 40 |
 
-**[Let that sink in.]**
+The room reacts. Even Eric's mum understands this table. The brother — a professional software engineer — is impressed. Not by the code, but by the methodology. He says something to the effect of: "That's what ML engineers do. You just did model evaluation without knowing the term."
 
-Claude didn't just rank it well. It ranked it *first.* The exact photo the mother would frame on the wall. Score of 95.
+Claude didn't just rank the cheeky photo well. It ranked it **first.** Score of 95. And it wrote a reason — something about the expression capturing genuine personality and mischief. When Eric read Claude's reason out loud, the room went quiet. The AI articulated *why* the photo mattered better than anyone in the room had.
 
-GPT-4o was close — second place, score of 90. Respectable.
-
-Gemini? Dead. Last. For the third time. Even with the emotional prompt.
-
-**[YAOHONG — tech context]:**
-*OK, so this is genuinely fascinating from a technical perspective. All three models received identical input — same images, same text prompt. The difference is in how each model was trained. Google optimized Gemini heavily for factual accuracy and structured analysis. It interprets "score like a parent" and still defaults to technical metrics. Claude was trained with a different emphasis — understanding human intent, nuance, what you actually mean versus what you literally said. When you say "score like a parent," Claude understands the spirit of that instruction. It's not just reading the words — it's reading the intent.*
-
-**ERIC:**
-And here's the thing — I would never have known this if I hadn't tested. If I'd just used Gemini (because I had a Google API key handy) and never compared, I would've thought AI just can't do this. I would've given up.
-
-The eval table took maybe 15 minutes to set up. Claude Code created the two extra scripts in parallel. And those 15 minutes completely changed my conclusion from "AI can't understand taste" to "the right AI absolutely can."
-
-**[Principle #5: Always eval. Always compare. The difference between "AI doesn't work for this" and "this specific model doesn't work for this" is the difference between giving up and shipping a product.]**
+The sister-in-law: "That's exactly right. That's exactly why I love that photo."
 
 ---
 
-## ACT 6: THE BIGGER PICTURE (5 min)
-*Theme: What this session revealed about building with AI as a non-technical person.*
+## WHAT HAPPENED AFTER (5 min)
 
-**ERIC:**
-So let me zoom out. What actually happened in this 60-minute session?
+The energy in the room shifted. The sister-in-law started riffing on ideas. What about a "purge folder" — instead of deleting rejected photos, move them somewhere for a quick review before permanent deletion? What about the AI learning her taste over time? What about a "Year in Photos" — like Spotify Wrapped, but for your photo library?
 
-1. **We started with a real person and a real problem** — not a feature idea, not a spec. A friend sitting next to me saying "I can't deal with my photos." That's the customer interview.
+Eric captured all of this in a roadmap file. None of it got built that day. The point wasn't to build a product. The point was to prove the problem was solvable. And it was — in under an hour, with zero code written by a human.
 
-2. **We built the simplest possible thing** — a Python script. Not an app. Not a website. One command, one result. Took 15 minutes.
+The brother's takeaway was different. He'd been watching a non-technical person direct AI to build working software, evaluate multiple models, and arrive at a defensible technical decision — all without understanding what `.tsx` means. The activation energy problem he'd never solved for himself got solved in front of him by someone who doesn't code.
 
-3. **We tested with a real human** — showed the results to the person with the problem. She immediately found the flaw.
+Eric's mum's takeaway: "So the computer can pick which photo is the nice one?"
 
-4. **We iterated on the instructions, not the code** — the rewrite was one paragraph. Plain English. No programming knowledge needed.
-
-5. **When the instructions were right but the output was still wrong, we compared models** — 15 minutes, three models, one table. Clear winner.
-
-6. **We let the customer interview shape the product vision** — the friend started riffing on ideas. Purge folder. Preference learning. "Year in Photos" like Spotify Wrapped. Instagram for your private library. These ideas came from the conversation, not from a whiteboard.
-
-The whole thing — from "I have too many photos" to "Claude Sonnet picks the exact photo I'd frame on my wall" — was about an hour.
-
-**[YAOHONG:]**
-*And the interesting thing is, none of this required reading or writing code. Eric was directing the AI the entire time. "Build me this." "Change this instruction." "Now test it against these other models." That's it. The skill isn't coding. The skill is knowing what to build, how to test it, and when to change direction.*
+Yes. That's exactly what it does.
 
 ---
 
-## THE METHODOLOGY — EXTRACTED (3 min)
-*For the podcast series going forward.*
+## MOMENTS THAT LANDED
 
-**ERIC:**
-So if we're going to do this regularly — build things live, on camera — here's the methodology that emerged naturally from today. We didn't plan this. It just happened. But I think it's repeatable.
+*The stuff that makes good content — when people in the room leaned in, laughed, or said "wait, what?"*
 
-**Step 1: Customer Interview (10-15 min)**
-- Sit with a real person who has a real problem
-- Use voice transcription (I used Whisper Flow) so you can talk naturally
-- Let them describe the pain in their own words
-- Don't propose solutions yet. Just listen.
+1. **"Baby Eating Muffin."** The AI naming the event. The room laughed. It felt human and charming. First moment of "oh, this thing *understands.*"
 
-**Step 2: Build the Simplest Thing (15-20 min)**
-- Python script, not an app
-- One input, one output
-- Direct the AI tool to build it. Don't overthink architecture.
-- The goal is a working prototype you can show to the person in the same session.
+2. **Mom's taste vs AI's taste.** The emotional core. A mother's instinctive "that one, that's my kid" versus the AI's clinical "this one has better exposure." Made everyone think about what intelligence actually means.
 
-**Step 3: The Human Test (5 min)**
-- Show the output to the real human
-- Ask: "Does this match what you'd do?"
-- Listen for where it disagrees. That's the gold.
+3. **The prompt rewrite — reading it out loud.** When Eric read the rewritten prompt, the non-technical people realized: *I could write this. This is a creative brief, not code.* That was the accessibility moment.
 
-**Step 4: Iterate on Instructions (10 min)**
-- When it disagrees, rewrite the prompt — the instructions you gave the AI
-- This is product design in plain English
-- Test again. Did it get closer?
+4. **The eval table.** When the three-model comparison appeared. Claude #1, GPT-4o #2, Gemini dead last. A technical SWE and his mum both understood it instantly. Data, not opinion.
 
-**Step 5: Eval if Needed (15 min)**
-- If the instructions are right but the output is still wrong, test other AI models
-- Same input, same prompt, different model
-- Build a comparison table. Let the data decide.
+5. **Claude's "reason."** The AI explaining *why* the cheeky photo was the best — articulating the emotional quality better than the humans had. The sister-in-law saying "that's exactly right." An AI understanding a mother's taste.
 
-**Step 6: Capture the Vision (5 min)**
-- After the build, the customer will naturally start riffing on ideas
-- Write these down. This is your roadmap.
-- Don't build them yet. Just capture.
+6. **Eric not knowing what .tsx is.** The brother pointing it out, half-amused, half-amazed. The person directing the build doesn't understand the file extensions of the code being written. And it doesn't matter. The skill isn't reading code — it's knowing what to build and how to test it.
 
-**Total: ~60 minutes from problem to proof-of-concept.**
-
----
-
-## CLOSE (2 min)
-
-**ERIC:**
-The thing I keep coming back to is: my friend will never learn to code. She doesn't want to. She shouldn't have to. But she has a real problem — a terabyte of memories she can't access — and in one hour, sitting on a couch, talking to me while I talked to an AI, we proved that the problem is solvable.
-
-That's what I want to show people. Not "learn to code." Not "AI will take your job." Just: **there are things you've given up on solving because you thought they required a developer. They don't anymore.**
-
-And if the AI picks the wrong photo? You rewrite one paragraph and try again.
-
-**[YAOHONG:]**
-*From the technical side — what impressed me is the eval. Most people, technical or not, don't compare models. They use whatever's default and assume the results are representative. Eric's instinct to say "let me test three models side by side" is actually what professional ML engineers do. He just did it without knowing the jargon.*
-
-**ERIC:**
-See? I'm accidentally an engineer. Don't tell anyone.
-
----
-
-## MOMENTS THAT LANDED IN THE ROOM
-
-*These are the moments during the live session where people leaned in, laughed, or said "wait, what?" — the stuff that makes good content.*
-
-1. **The eval table.** When the three-model comparison appeared on screen — Claude #1, GPT-4o #2, Gemini dead last — there was a visible "oh shit" moment. The table made it undeniable. It wasn't opinion. It was data. A technical SWE and his wife both understood it instantly.
-
-2. **Reading Claude's "reason" out loud.** After Claude scored the cheeky photo #1 with a 95, it also wrote a one-sentence reason explaining *why* — something about the expression capturing genuine personality. Reading that out loud to the room, people went quiet. The AI articulated why the photo mattered *better than the humans had.*
-
-3. **The prompt rewrite side-by-side.** Showing the before prompt ("score on quality and composition") next to the after prompt ("you are a PARENT picking photos to frame on the wall") — that was the "aha" moment. The non-technical people in the room realized: this isn't coding. This is *writing.* You're writing a brief, like for a creative agency. And that's accessible to everyone.
-
-4. **"Baby Eating Muffin."** When Gemini named the event "Baby Eating Muffin," the room laughed. It was accurate, charming, and made the tech feel human. Naming things is one of AI's underrated superpowers.
-
-5. **Mom's taste vs AI's taste.** The whole dynamic of a mother's instinctive "that one, that's my kid" versus the AI's clinical "this one has better exposure" — that tension was the emotional core of the session. It made everyone think about what "intelligence" actually means.
-
-6. **The technical husband hadn't built this.** The unspoken subtext: a software engineer with SWF-tier credentials could have built this himself. But he hadn't. Because the tool that matters isn't the one you *can* build — it's the one you *actually* build. Claude Code collapsed the activation energy to zero.
+7. **The SWE who hadn't built it.** The unspoken subtext: a software engineer with world-class credentials could have built this himself. But he hadn't. The tool that matters isn't the one you *can* build — it's the one you *actually* build. Claude Code collapsed the gap between "I could" and "I did."
 
 ---
 
 ## EPISODE NOTES
 
-**What was built:** Photo Curator — groups photos by event, scores them using AI vision, picks the best one
+**Setting:** Family living room, 5 people, 1 laptop
 **Time:** ~60 minutes
 **Code written by Eric:** Zero
+**Code understood by Eric:** Also zero
 **Models tested:** Gemini, Claude Sonnet, GPT-4o
 **Winner:** Claude Sonnet (matched human taste perfectly)
 **GitHub:** github.com/erictisme/photo-curator
 
-**Key moments:**
-- 0:00 — Cold open: "The AI picked wrong"
-- 2:00 — The problem: 1TB of photos, can't relive memories
-- 10:00 — Building the first script in 15 minutes
-- 20:00 — The human test: friend picks her favorite, AI disagrees
-- 28:00 — The prompt rewrite: "score like a parent"
-- 36:00 — The eval table: three models, one winner
-- 48:00 — The methodology: 6 steps from problem to proof
-- 55:00 — What this means for non-technical builders
+---
+
+## WHAT THIS EPISODE DEMONSTRATES
+
+For Yaohong and anyone producing this content — this is what the format looks like:
+
+**It's not a tutorial.** Nobody follows along on their own laptop. It's a screen shared in a room (or on a call) where the non-technical person drives and the conversation shapes what gets built.
+
+**It's not a demo.** It's a discovery session. Nobody knew in advance that Gemini would fail, that the prompt rewrite wouldn't fix it, or that Claude would nail it. The failures are the content.
+
+**The dynamic is 3+ people, not 2.** The person with the problem. The person directing the AI. The technical person observing and explaining. Maybe others watching and reacting. The conversation between them IS the product requirements — fed through Whisper Flow into Claude Code.
+
+**Time to value is the proof.** Under 1 hour from "I have this problem" to "holy shit, the AI picked the exact photo I would have picked." That's the moment that convinces people this is real.
 
 ---
 
 ## GUIDING PRINCIPLES FOR THE SERIES
 
-Extracted from today's session and Eric's notes to Yaohong:
+*Aligned with Eric's notes to Yaohong, Feb 7 2026:*
 
-1. **Problem-first, not tool-first.** We don't demo Claude Code features. We solve someone's actual problem using Claude Code. The tool is invisible. The solution is the star.
+1. **Problem-first, not tool-first.** We don't demo Claude Code features. We solve someone's actual problem. The tool is invisible. The solution is the star.
 
-2. **Time to value under 1 hour.** Every episode should go from "I have this problem" to "holy shit it works" in under 60 minutes. If it takes longer, the problem is too big or we're overbuilding.
+2. **Time to value under 1 hour.** From "I have this problem" to "it works" in under 60 minutes. If it takes longer, the problem is too big or we're overbuilding. The goal isn't shipping a product — it's proving the problem is solvable. Enough to build trust that it's worth investing more time.
 
-3. **The non-technical person leads.** Eric drives product requirements, asks "dumb" questions, represents the audience. Yaohong explains what's happening technically and why it matters. The audience should see themselves in Eric, not Yaohong.
+3. **Build tools nobody would build for them.** The positioning isn't "automate your job." It's "solve problems nobody would ever build a tool for" — like sorting through 10,000 family photos. These problems don't get solved because they're not big enough for a startup, not urgent enough for an engineer, and too tedious for a human. AI changes the economics.
 
-4. **Show the failures.** The Gemini failure was more educational than the Claude success. Debugging, wrong turns, and "that didn't work" moments are the content. Polished demos are boring. Messy builds are relatable.
+4. **Enhance work, don't remove it.** Not "AI replaces your job." It's "AI does work that was never going to happen." The sister-in-law was never going to sort a terabyte manually. This isn't automation replacing labor. This is unlocking value that didn't exist before.
 
-5. **Always eval.** Compare models, compare approaches. Make a table. This is the one habit that separates "vibing" from actually building something that works.
+5. **The non-technical person leads.** Eric drives. He asks questions, describes problems, represents the audience. The technical person (Yaohong, or the brother in this case) explains what's happening and why it matters. The audience should see themselves in Eric.
 
-6. **Enhance work, don't remove it.** The positioning isn't "AI replaces your job." It's "AI does work nobody would ever do" — like sorting through 10,000 photos. The friend was never going to do that manually. This isn't automation replacing labor. This is unlocking value that didn't exist before.
+6. **Show the failures.** The Gemini failure was more educational than the Claude success. The prompt rewrite that didn't work was more interesting than the one that did. Polished demos are boring. Real discovery is messy and relatable.
 
-7. **Capture, don't build.** When the customer starts riffing on ideas ("what about Spotify Wrapped for photos?"), write it down, don't build it. The roadmap comes from the conversation. The build comes later.
+7. **Spend more time on problem discovery than building.** The conversation about *why* photos matter — reliving memories, mental load, Instagram as accidental curation — shaped the prompt rewrite, which shaped the product. The customer interview isn't a step before the build. It IS the build.
 
-8. **ICP: "From my mum to pastors to doctors."** Everyday people. White-collar workers. The vast majority of the world who will never write a line of code but who have problems worth solving.
+8. **ICP: "From my mum to pastors to doctors to admin staff."** Everyday white-collar people. People who will never write code. People who have problems they've given up on solving. The technical person in the room is the validator, not the audience.
+
+9. **Capture, don't build.** When the customer starts riffing on ideas ("what about Spotify Wrapped for photos?"), write it down. Don't build it. The roadmap comes from the conversation. The build comes later — or never. The session is about proving value, not shipping features.
