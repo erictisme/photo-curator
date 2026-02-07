@@ -22,9 +22,11 @@ I'm Eric. I don't write code. I build software by talking to AI. And today I'm g
 *Theme: Start with a real person's real pain. Not a hypothesis.*
 
 **ERIC:**
-So this started because my friend — she's sitting right next to me — says she has a problem with her photos. She uses Apple Photos. Over a terabyte. And the duplicate-finder in Apple Photos? She's tried it. It catches *identical* copies. But that's not her problem.
+So this started because I was hanging out with a couple — the husband is a software engineer. Infosys background. Used to work in tech at one of the largest sovereign wealth funds in the world. His wife has a problem with her photos. Apple Photos. Over a terabyte. And the duplicate-finder in Apple Photos? She's tried it. It catches *identical* copies. But that's not her problem.
 
 Her problem is she has seventeen photos of the same moment. Her baby eating a muffin. Slightly different angles, slightly different expressions. She wants to keep the best one or two, not all seventeen. But she'll never sit down and do that manually for a terabyte of photos.
+
+And here's what makes this interesting: her husband is a *technical* guy. He could probably build something to solve this. But he hasn't. Because the problem isn't technical skill — it's that life is busy, nobody has the motivation to sit down and build a photo sorter on a Saturday afternoon. This is the kind of problem that doesn't get solved because it's not urgent enough to prioritize, but painful enough to complain about.
 
 **[YAOHONG — tech context]:**
 *This is actually a harder problem than it sounds. Finding identical photos is a solved problem — you compare the file data. Finding the "best" photo from a group of similar-but-different photos? That's a judgment call. That's taste. And taste is subjective.*
@@ -251,6 +253,24 @@ And if the AI picks the wrong photo? You rewrite one paragraph and try again.
 
 **ERIC:**
 See? I'm accidentally an engineer. Don't tell anyone.
+
+---
+
+## MOMENTS THAT LANDED IN THE ROOM
+
+*These are the moments during the live session where people leaned in, laughed, or said "wait, what?" — the stuff that makes good content.*
+
+1. **The eval table.** When the three-model comparison appeared on screen — Claude #1, GPT-4o #2, Gemini dead last — there was a visible "oh shit" moment. The table made it undeniable. It wasn't opinion. It was data. A technical SWE and his wife both understood it instantly.
+
+2. **Reading Claude's "reason" out loud.** After Claude scored the cheeky photo #1 with a 95, it also wrote a one-sentence reason explaining *why* — something about the expression capturing genuine personality. Reading that out loud to the room, people went quiet. The AI articulated why the photo mattered *better than the humans had.*
+
+3. **The prompt rewrite side-by-side.** Showing the before prompt ("score on quality and composition") next to the after prompt ("you are a PARENT picking photos to frame on the wall") — that was the "aha" moment. The non-technical people in the room realized: this isn't coding. This is *writing.* You're writing a brief, like for a creative agency. And that's accessible to everyone.
+
+4. **"Baby Eating Muffin."** When Gemini named the event "Baby Eating Muffin," the room laughed. It was accurate, charming, and made the tech feel human. Naming things is one of AI's underrated superpowers.
+
+5. **Mom's taste vs AI's taste.** The whole dynamic of a mother's instinctive "that one, that's my kid" versus the AI's clinical "this one has better exposure" — that tension was the emotional core of the session. It made everyone think about what "intelligence" actually means.
+
+6. **The technical husband hadn't built this.** The unspoken subtext: a software engineer with SWF-tier credentials could have built this himself. But he hadn't. Because the tool that matters isn't the one you *can* build — it's the one you *actually* build. Claude Code collapsed the activation energy to zero.
 
 ---
 
